@@ -10,12 +10,10 @@ pipeline {
         stage('Clone') {
             steps {
                 timeout(time: 2, unit: 'MINUTES'){
-                    git branch: 'main', credentialsId: env.GITHUB_TOKEN, url: 'https://github.com/dmamanipar/ProyectosTS2024-C2.git'
+                    git branch: 'main', credentialsId: env.GITHUB_TOKEN
                 }
             }
         }
-    }
-
         stage('Build') {
             steps {
                 timeout(time: 8, unit: 'MINUTES'){
@@ -52,11 +50,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-			    timeout(time: 8, unit: 'MINUTES'){
-					// Ejecutar mvn spring-boot:run
-					echo "mvn spring-boot:run -f SysAsistenciaAn/pom.xml"
-                }
-                //echo "mvn spring-boot:run -f SysAsistenciaAn/pom.xml"
+                echo "mvn spring-boot:run -f SysAsistenciaAn/pom.xml"
             }
         }
     }
